@@ -14,7 +14,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/placeholder"
-        android:title="placeholder"
+        android:title=""
         app:showAsAction="always" />
     <item
         android:id="@+id/statsButton"
