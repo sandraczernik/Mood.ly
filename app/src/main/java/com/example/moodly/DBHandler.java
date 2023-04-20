@@ -12,20 +12,27 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table if not exists users(" +
-                "userID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "firstName TEXT, " +
-                "lastName TEXT, " +
-                "username TEXT, " +
-                "userEmail TEXT, " +
-                "password TEXT, " +
-                "dateofbirth TEXT)"
+        MyDB.execSQL("create Table if not exists moods(" +
+                "moodID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "moodType TEXT)"
+        );
+
+        MyDB.execSQL("create Table if not exists categories(" +
+                "categoryID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "categoryTypes TEXT)"
         );
         }
 
 
+
+
+
+
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
-        MyDB.execSQL("drop Table if exists users");
+        MyDB.execSQL("drop Table if exists moods");
+        MyDB.execSQL("drop Table if exists categories");
     }
+
+
 }

@@ -10,21 +10,24 @@ import android.widget.Button;
 
 public class WelcomeActivity3 extends AppCompatActivity implements View.OnClickListener {
 
-    Button welcomeBtn;
+    Button loginBtn;
+    Button registerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome3);
 
-        welcomeBtn = (Button) findViewById(R.id.welcomeButtonNext3);
+
+        registerBtn = (Button) findViewById(R.id.registerButtonWelcome);
 
     }
 
     @Override
     public void onClick(View view) {
-        if ((Button)view == welcomeBtn){
-            Log.i("WelcomeButton", "Welcome Button Clicked");
+
+        if ((Button)view == registerBtn){
+            Log.i("RegisterButtonTest", "Register Button Clicked");
             finish();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);

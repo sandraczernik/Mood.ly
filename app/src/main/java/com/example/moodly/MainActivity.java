@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     public BottomNavigationItemView bottomNavigationItemView;
     public FloatingActionButton floatingActionButton;
-
+    DBHandler DB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
