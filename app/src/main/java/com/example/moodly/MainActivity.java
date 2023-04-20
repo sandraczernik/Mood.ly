@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -17,9 +18,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     public BottomNavigationItemView bottomNavigationItemView;
+
+    public TextView textView;
     public FloatingActionButton floatingActionButton;
     DBHandler DB;
     @Override
@@ -71,6 +78,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 startActivity(intentAdd);
             }}
         });
+
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+        String month_name = month_date.format(calendar.getTime());
+        textView = findViewById(R.id.monthDisplay);
+        textView.setText(month_name);
+
+
+
+
+
+
+
+
+
+
 
     }
 
