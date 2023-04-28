@@ -17,7 +17,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 "moodID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "moodType TEXT," +
                 "categories TEXT," +
-                "mmoodDate TEXT)"
+                "moodDate TEXT)"
         );
 
         }
