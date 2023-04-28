@@ -3,12 +3,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="e_mail">E-mail</string>
-    <string name="retype_password">Re-type Password</string>
-    <string name="login_button">Login</string>
-    <string name="register_button">Register</string>
     <string name="get_started_prompt">Get Started</string>
-    <string name="register_prompt">Not a user? <u>Register here</u></string>
-    <string name="login_prompt">Already a user? <u>Sign in here</u></string>
     <string name="welcome_msg_one_title">Welcome to Mood.ly</string>
     <string name="welcome_msg_two_title">Store</string>
     <string name="welcome_msg_three_title">Trends</string>
@@ -19,6 +14,11 @@
     <string name="lastname">Last Name</string>
     <string name="dob">Date of Birth</string>
 
+    <!-- AddMoodActivity  -->
+    <string name="how_are_you">How are you?</string>
+    <string name="pick_one">Pick one below.</string>
+    <string name="add_mood_next">Next</string>
+    <string name="back">Back</string>
 
 
 

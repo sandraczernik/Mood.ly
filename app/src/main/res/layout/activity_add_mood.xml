@@ -4,10 +4,161 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cream_background"
     tools:context=".AddMoodActivity">
 
-    <include
-        android:id="@+id/include"
-        layout="@xml/navigation_bar" />
+
+    <TextView
+        android:id="@+id/howAreYouTextView"
+        android:layout_width="275dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="116dp"
+        android:gravity="center"
+        android:text="@string/how_are_you"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pickOneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/pick_one"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/howAreYouTextView" />
+
+    <Button
+        android:id="@+id/addMoodButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/add_mood_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/angryButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="336dp"
+        android:layout_marginTop="352dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="Very happy smiley button"
+        android:hapticFeedbackEnabled="true"
+        app:icon="@drawable/angry_smiley"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="#FFFFFF"
+        app:iconTintMode="multiply"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/veryHappyButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="352dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="Very happy smiley button"
+        android:hapticFeedbackEnabled="true"
+        app:icon="@drawable/very_happy_smiley"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="#FFFFFF"
+        app:iconTintMode="multiply"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/happyButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="352dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="Very happy smiley button"
+        android:hapticFeedbackEnabled="true"
+        app:icon="@drawable/happy_smiley"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="#FFFFFF"
+        app:iconTintMode="multiply"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/unsureButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="352dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="Very happy smiley button"
+        android:hapticFeedbackEnabled="true"
+        app:icon="@drawable/unsure_smiley"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="#FFFFFF"
+        app:iconTintMode="multiply"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/sadButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="208dp"
+        android:layout_marginTop="352dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="Very happy smiley button"
+        android:hapticFeedbackEnabled="true"
+        app:icon="@drawable/sad_smiley"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="#FFFFFF"
+        app:iconTintMode="multiply"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/cryingButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="272dp"
+        android:layout_marginTop="352dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="Very happy smiley button"
+        android:hapticFeedbackEnabled="true"
+        app:icon="@drawable/crying_smiley"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="#FFFFFF"
+        app:iconTintMode="multiply"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
