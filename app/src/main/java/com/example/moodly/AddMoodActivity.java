@@ -15,8 +15,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class AddMoodActivity extends AppCompatActivity {
 
-    public BottomNavigationItemView bottomNavigationItemView;
-    public FloatingActionButton floatingActionButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
