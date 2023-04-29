@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         ArrayAdapter<String> showAdapter;
         showAdapter
-                = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, moodList);
+                = new ArrayAdapter<String>(this, R.layout.custom_dropdown, moodList);
         moodListView.setAdapter(showAdapter);
 
 
