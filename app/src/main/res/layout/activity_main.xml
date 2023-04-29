@@ -28,8 +28,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/moodList"
+    <ListView
+        android:id="@+id/moodListRecyclerView"
         android:layout_width="412dp"
         android:layout_height="525dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,9 +1,11 @@
 package com.example.moodly;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //handles all database methods
@@ -56,15 +58,32 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
+
+
+    public ArrayList<String> getMoodList() {
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        String query = "SELECT moodType, activities, moodDate FROM moods";
+        Cursor cursorMoodList = MyDB.rawQuery(query,null);
+        ArrayList<String> listMoods = new ArrayList<>();
+
+        if (cursorMoodList.moveToFirst()){
+            do {
+                String currentMoodType = cursorMoodList.getString(0);
+                String currentActivity = cursorMoodList.getString(1);
+                String currentMoodTime = cursorMoodList.getString(2);
+
+                String moodEntry = currentMoodType + " | " + currentActivity + " | " + currentMoodTime;
+                listMoods.add(moodEntry);
+            } while (cursorMoodList.moveToNext());
+        } cursorMoodList.close();
+        return listMoods;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
         MyDB.execSQL("drop Table if exists moods");
 
     }
-
-
-
-
 
 
 
