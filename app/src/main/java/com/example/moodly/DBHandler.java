@@ -8,6 +8,8 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 //handles all database methods
 public class DBHandler extends SQLiteOpenHelper {
     public static final String DBNAME = "Mood.ly_App";
@@ -16,7 +18,7 @@ public class DBHandler extends SQLiteOpenHelper {
         super(context, DBNAME, null, 1);
         SQLiteDatabase MyDB = this.getWritableDatabase();
     }
-
+    private static Context Ccontext;
     // creating table to store all information added by user on AddMoodActivity.java
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
@@ -61,11 +63,6 @@ public class DBHandler extends SQLiteOpenHelper {
             return  true;
     }
 
-
-
-
-
-
     public ArrayList<String> getMoodList() {
         SQLiteDatabase MyDB = this.getReadableDatabase();
         String query = "SELECT moodType, activities, moodDate FROM moods";
@@ -77,7 +74,6 @@ public class DBHandler extends SQLiteOpenHelper {
                 String currentMoodType = cursorMoodList.getString(0);
                 String currentActivity = cursorMoodList.getString(1);
                 String currentMoodTime = cursorMoodList.getString(2);
-
                 String moodEntry = currentMoodType + "\n" + currentActivity + "\n" + currentMoodTime;
                 listMoods.add(moodEntry);
             } while (cursorMoodList.moveToNext());

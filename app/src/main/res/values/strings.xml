@@ -18,5 +18,9 @@
     <string name="categories">What have you been up to?</string>
     <string name="select_from">Select activities below</string>
 
+    <!-- CalendarActivity -->
+    <string name="calendarTitle">Calendar</string>
+    <string name="calendarInfo">View moods added by month</string>
+
 
 </resources>

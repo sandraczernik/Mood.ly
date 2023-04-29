@@ -7,14 +7,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class AddCategoryActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,9 +35,9 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
-
-        readingchk = (CheckBox) findViewById(R.id.readingCheckbox);
-        gamingchk = (CheckBox) findViewById(R.id.gamingCheckbox);
+//
+//        readingchk = (CheckBox) findViewById(R.id.readingCheckbox);
+//        gamingchk = (CheckBox) findViewById(R.id.gamingCheckbox);
         activityBtn = (Button) findViewById(R.id.addActivityButton);
 
         Intent intent = getIntent();
@@ -49,10 +52,7 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
         //formattedTime = (Integer.parseInt(Integer.toString(hour)) + ":" + Integer.parseInt(Integer.toString(minute)));
         //System.out.print(formattedTime);
 
-        DateFormat df = new SimpleDateFormat("HH:mm");
-        String time = df.format(Calendar.getInstance().getTime());
-        formattedTime = time.toString();
-        System.out.println(formattedTime);
+
 
     }
 
@@ -60,11 +60,21 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         if ((Button) view == activityBtn) {
 
+            //TIME FOR DATABASE
+            DateFormat df = new SimpleDateFormat("HH:mm");
+            String time = df.format(Calendar.getInstance().getTime());
+            formattedTime = time.toString();
+            System.out.println(formattedTime);
 
 
-            String resulttest = "";
-            Toast.makeText(getApplicationContext(), resulttest, Toast.LENGTH_SHORT).show();
-            System.out.println(resulttest);
+            //testing
+            SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+            Date d = new Date();
+            String dayOfTheWeek = sdf.format(d);
+            System.out.println(dayOfTheWeek);
+
+
+
 
             Boolean insertMood = DB.insertNewMood(key, activities, formattedTime);
             if (insertMood){

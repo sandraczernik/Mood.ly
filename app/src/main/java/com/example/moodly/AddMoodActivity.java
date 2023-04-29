@@ -64,7 +64,7 @@ public class AddMoodActivity extends AppCompatActivity implements View.OnClickLi
 
         if ((Button)view == veryHappyBtn){
             Log.i("Very Happy Button", "Very Happy Button Clicked");
-            selectedMood =  "Very";
+            selectedMood =  "Very Happy";
             veryHappyBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
 
         }else{

@@ -25,6 +25,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,7 +48,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     // displaying list
     private ArrayList<String> moodList = new ArrayList<>();
     ListView moodListView;
-
+    Drawable veryHappyImage;
+String veryhappyBitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +57,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         DB = new DBHandler(MainActivity.this);
 
-
-
-
-
-
+        //list of moods
         this.moodList = DB.getMoodList();
         moodListView = findViewById(R.id.moodListRecyclerView);
 
@@ -67,10 +66,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 = new ArrayAdapter<String>(this, R.layout.custom_dropdown, moodList);
         moodListView.setAdapter(showAdapter);
 
+        //image saving
+        //getResources().getIdentifier("very_happy_smiley","drawable","com.app");
+        // WORKS System.out.println(getResources().getIdentifier("very_happy_smiley","drawable","com.example.moodly"));
+        MaterialCalendarView materialCalView = findViewById(R.id.calendarView);
+        materialCalView.setDateSelected(CalendarDay.today(), true);
 
-
-
-
+        //navigation
         bottomNavigationItemView = findViewById(R.id.homeButton);
         bottomNavigationItemView = findViewById(R.id.calendarButton);
         floatingActionButton = findViewById(R.id.addButton);
@@ -115,18 +117,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }}
         });
 
-
+// LATER
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
-        String month_name = month_date.format(calendar.getTime());
-        textView = findViewById(R.id.monthDisplay);
-        textView.setText(month_name);
-
-
-
-
-
-
 
 
 
