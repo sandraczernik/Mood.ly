@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,12 +44,16 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
         DB = new DBHandler(AddCategoryActivity.this);
 
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        int hour = calendar.get(Calendar.HOUR);
-        int minute = calendar.get(Calendar.MINUTE);
+//       int hour = calendar.get(Calendar.HOUR);
+//       int minute = calendar.get(Calendar.MINUTE);
+        //formattedTime = (Integer.parseInt(Integer.toString(hour)) + ":" + Integer.parseInt(Integer.toString(minute)));
+        //System.out.print(formattedTime);
 
-        formattedTime = (Integer.parseInt(Integer.toString(hour)) + ":" + Integer.parseInt(Integer.toString(minute)));
-        System.out.print(formattedTime);
+        DateFormat df = new SimpleDateFormat("HH:mm");
+        String time = df.format(Calendar.getInstance().getTime());
+        formattedTime = time.toString();
+        System.out.println(formattedTime);
+
     }
 
     @Override
@@ -65,7 +70,8 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
             if (insertMood){
                String moodAdded = "A new mood has been added";
                 Toast.makeText(getApplicationContext(), moodAdded, Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             }
 
 
@@ -125,7 +131,7 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
         if (view.getId() == R.id.cleaningCheckbox) {
             activities.add("Cleaning");
         }
-        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+
 
 
     }
