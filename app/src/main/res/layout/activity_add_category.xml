@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox2"
+        android:id="@+id/exerciseCheckbox"
         android:layout_width="60dp"
         android:layout_height="58dp"
         app:buttonTint="@color/checkbox_tint"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox3"
+        android:id="@+id/dogCheckbox"
         android:layout_width="60dp"
         android:layout_height="58dp"
         app:buttonTint="@color/checkbox_tint"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox4"
+        android:id="@+id/catCheckbox"
         android:layout_width="60dp"
         app:buttonTint="@color/checkbox_tint"
         android:layout_height="58dp"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox5"
+        android:id="@+id/shoppingCheckox"
         android:layout_width="60dp"
         app:buttonTint="@color/checkbox_tint"
         android:layout_height="58dp"
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox6"
+        android:id="@+id/healthyEatingCheckbox"
         android:layout_width="60dp"
         android:layout_height="58dp"
         android:layout_marginStart="104dp"
@@ -104,7 +104,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox7"
+        android:id="@+id/earlySleepCheckbox"
         android:layout_width="60dp"
         android:layout_height="58dp"
         app:buttonTint="@color/checkbox_tint"
@@ -117,7 +117,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox8"
+        android:id="@+id/cinemaCheckbox"
         android:layout_width="60dp"
         app:buttonTint="@color/checkbox_tint"
         android:layout_height="58dp"
@@ -130,7 +130,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox9"
+        android:id="@+id/relaxCheckbox"
         android:layout_width="60dp"
         android:layout_height="58dp"
         android:layout_marginStart="320dp"
@@ -143,7 +143,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox10"
+        android:id="@+id/familyCheckbox"
         android:layout_width="60dp"
         android:layout_height="58dp"
         android:layout_marginStart="32dp"
@@ -156,7 +156,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox11"
+        android:id="@+id/friendsCheckbox"
         android:layout_width="60dp"
         android:layout_height="58dp"
         app:buttonTint="@color/checkbox_tint"
@@ -169,7 +169,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox12"
+        android:id="@+id/unhealthyEatingCheckbox"
         android:layout_width="60dp"
         app:buttonTint="@color/checkbox_tint"
         android:layout_height="58dp"
@@ -182,7 +182,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox14"
+        android:id="@+id/cleaningCheckbox"
         android:layout_width="60dp"
         android:layout_height="58dp"
         app:buttonTint="@color/checkbox_tint"
@@ -195,7 +195,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/gamingCheckbox13"
+        android:id="@+id/programmingCheckbox"
         android:layout_width="60dp"
         android:layout_height="58dp"
         app:buttonTint="@color/checkbox_tint"

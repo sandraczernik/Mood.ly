@@ -4,6 +4,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 
+import java.util.List;
+
 //handles all database methods
 public class DBHandler extends SQLiteOpenHelper {
     public static final String DBNAME = "Mood.ly_App";
@@ -19,17 +21,38 @@ public class DBHandler extends SQLiteOpenHelper {
         MyDB.execSQL("create Table if not exists moods(" +
                 "moodID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "moodType TEXT," +
-                "categories TEXT," +
+                "activities TEXT," +
                 "moodDate TEXT)"
         );
 
         }
 
 //TODO: add new categories + display on main page
-    // insert new mood and relevant categories into the database based on user input
-    public Boolean insertNewMood;
-    SQLiteDatabase MyDB = this.getWritableDatabase();
-    ContentValues contentValues = new ContentValues();
+    public Boolean insertNewMood (String moodType, List<String> activities, String moodDate){
+
+        StringBuilder builder = new StringBuilder();
+        String seperator = ", ";
+        for (int i =0; i < activities.size();i++){
+
+            builder.append(seperator).append(activities.get(i));
+
+        }
+        System.out.println("Activity size: " + activities.size());
+
+        String activityResult = builder.substring(seperator.length());
+        System.out.println(activityResult);
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("moodType", moodType);
+        contentValues.put("activities", activityResult);
+        contentValues.put("moodDate", moodDate);
+        long result = MyDB.insert("moods", null, contentValues);
+        System.out.println("result" + result);
+        if (result == -1) return false;
+        else
+            return  true;
+    }
+
 
 
 
