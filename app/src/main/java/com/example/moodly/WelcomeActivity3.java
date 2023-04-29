@@ -10,7 +10,6 @@ import android.widget.Button;
 
 public class WelcomeActivity3 extends AppCompatActivity implements View.OnClickListener {
 
-    Button loginBtn;
     Button registerBtn;
 
     @Override
