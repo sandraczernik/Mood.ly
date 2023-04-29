@@ -49,14 +49,22 @@ public class AddMoodActivity extends AppCompatActivity implements View.OnClickLi
 
 
     }
+//    public static final String ANSI_RESET = "\u001B[0m";
+//    public static final String ANSI_BLACK = "\u001B[30m";
+//    public static final String ANSI_RED = "\u001B[31m";
+//    public static final String ANSI_GREEN = "\u001B[32m";
+//    public static final String ANSI_YELLOW = "\u001B[33m";
+//    public static final String ANSI_BLUE = "\u001B[34m";
+//    public static final String ANSI_PURPLE = "\u001B[35m";
+//    public static final String ANSI_CYAN = "\u001B[36m";
+//    public static final String ANSI_WHITE = "\u001B[37m";
 
     @Override
     public void onClick(View view) {
 
         if ((Button)view == veryHappyBtn){
             Log.i("Very Happy Button", "Very Happy Button Clicked");
-            selectedMood = "Very Happy";
-            veryHappyBtn.setBackgroundResource(R.drawable.very_happy_smiley_selected);
+            selectedMood =  "Very";
             veryHappyBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
 
         }else{
@@ -65,7 +73,7 @@ public class AddMoodActivity extends AppCompatActivity implements View.OnClickLi
 
         if ((Button)view == happyBtn){
             Log.i("Happy Button", "Happy Button Clicked");
-            selectedMood = "Happy Button";
+            selectedMood = "Happy";
             happyBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         }else{
             happyBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#37A62B")));
@@ -73,7 +81,7 @@ public class AddMoodActivity extends AppCompatActivity implements View.OnClickLi
 
         if ((Button)view == unsureBtn){
             Log.i("Unsure Button", "Unsure Button Clicked");
-            selectedMood = "Unsure Button";
+            selectedMood = "Unsure";
             unsureBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         }else{
             unsureBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#30C697")));
@@ -81,7 +89,7 @@ public class AddMoodActivity extends AppCompatActivity implements View.OnClickLi
 
         if ((Button)view == sadBtn){
             Log.i("Sad Button", "Sad Button Clicked");
-            selectedMood = "Sad Button";
+            selectedMood = "Sad";
             sadBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         }else{
             sadBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#50BAC8")));
@@ -89,7 +97,7 @@ public class AddMoodActivity extends AppCompatActivity implements View.OnClickLi
 
         if ((Button)view == cryingBtn){
             Log.i("Crying Button", "Crying Button Clicked");
-            selectedMood = "Crying Button";
+            selectedMood = "Crying";
             cryingBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         }else{
             cryingBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4860B8")));
@@ -97,7 +105,7 @@ public class AddMoodActivity extends AppCompatActivity implements View.OnClickLi
 
         if ((Button)view == angryBtn){
             Log.i("Angry Button", "Angry Button Clicked");
-            selectedMood = "Angry Button";
+            selectedMood = "Angry";
             angryBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
 
         }else{

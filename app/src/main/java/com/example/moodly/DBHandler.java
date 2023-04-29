@@ -27,7 +27,13 @@ public class DBHandler extends SQLiteOpenHelper {
                 "moodDate TEXT)"
         );
 
-        }
+//        MyDB.execSQL("create Table if not exists moodImages(" +
+//                "moodImageType TEXT PRIMARY KEY AUTOINCREMENT," +
+//                "moodImage BLOB)"
+//
+//        );
+
+    }
 
 //TODO: add new categories + display on main page
     public Boolean insertNewMood (String moodType, List<String> activities, String moodDate){
@@ -72,7 +78,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 String currentActivity = cursorMoodList.getString(1);
                 String currentMoodTime = cursorMoodList.getString(2);
 
-                String moodEntry = currentMoodType + " | " + currentActivity + " | " + currentMoodTime;
+                String moodEntry = currentMoodType + "\n" + currentActivity + "\n" + currentMoodTime;
                 listMoods.add(moodEntry);
             } while (cursorMoodList.moveToNext());
         } cursorMoodList.close();
