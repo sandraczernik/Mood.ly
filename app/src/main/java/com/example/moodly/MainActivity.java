@@ -23,10 +23,12 @@ import android.widget.Toast;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.datepicker.MaterialCalendar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,13 +43,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public BottomNavigationItemView bottomNavigationItemView;
     public FloatingActionButton floatingActionButton;
     public TextView textView;
-
+    CalendarDay currentDay;
+    int year;
+    int month;
+    int day;
     DBHandler DB;
-
-
+    MaterialCalendarView materialCalView;
+    String currentDate;
     // displaying list
     private ArrayList<String> moodList = new ArrayList<>();
     ListView moodListView;
+
     Drawable veryHappyImage;
 String veryhappyBitmap;
     @Override
@@ -56,21 +62,30 @@ String veryhappyBitmap;
         setContentView(R.layout.activity_main);
 
         DB = new DBHandler(MainActivity.this);
+        MaterialCalendarView materialCalView = findViewById(R.id.calendarView);
+        materialCalView.setDateSelected(CalendarDay.today(), true);
+        currentDay = materialCalView.getSelectedDate();
+        year = currentDay.getYear();
+        month = currentDay.getMonth();
+        day = currentDay.getDay();
 
-        //list of moods
-        this.moodList = DB.getMoodList();
+        String currentDate = String.format("%02d/%02d/%04d", day, month, year);
+        moodList = DB.getDate(currentDate);
         moodListView = findViewById(R.id.moodListRecyclerView);
 
         ArrayAdapter<String> showAdapter;
         showAdapter
-                = new ArrayAdapter<String>(this, R.layout.custom_dropdown, moodList);
+                = new ArrayAdapter<String>(MainActivity.this, R.layout.custom_dropdown, moodList);
         moodListView.setAdapter(showAdapter);
+        //list of moods
+
+
 
         //image saving
         //getResources().getIdentifier("very_happy_smiley","drawable","com.app");
         // WORKS System.out.println(getResources().getIdentifier("very_happy_smiley","drawable","com.example.moodly"));
-        MaterialCalendarView materialCalView = findViewById(R.id.calendarView);
-        materialCalView.setDateSelected(CalendarDay.today(), true);
+
+
 
         //navigation
         bottomNavigationItemView = findViewById(R.id.homeButton);
@@ -111,19 +126,47 @@ String veryhappyBitmap;
 
             @Override
             public void onClick(View view) {
-                if ((FloatingActionButton)view == floatingActionButton){
-                Intent intentAdd = new Intent(MainActivity.this, AddMoodActivity.class);
-                startActivity(intentAdd);
-            }}
+                if ((FloatingActionButton) view == floatingActionButton) {
+                    Intent intentAdd = new Intent(MainActivity.this, AddMoodActivity.class);
+                    startActivity(intentAdd);
+                }
+            }
         });
 
 // LATER
-        Calendar calendar = Calendar.getInstance();
+
+        materialCalView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                currentDay = materialCalView.getSelectedDate();
+                year = currentDay.getYear();
+                month = currentDay.getMonth();
+                day = currentDay.getDay();
 
 
 
+//                StringBuilder builder = new StringBuilder();
+//                builder.append(day);
+//                builder.append("/");
+//                builder.append(month);
+//                builder.append("/");
+//                builder.append(year);
+//                currentDate = builder.toString();
+                System.out.println(String.format("%02d/%02d/%04d", day, month, year));
+                String currentDate = String.format("%02d/%02d/%04d", day, month, year);
 
 
+                moodList = DB.getDate(currentDate);
+                moodListView = findViewById(R.id.moodListRecyclerView);
+
+                ArrayAdapter<String> showAdapter;
+                showAdapter
+                        = new ArrayAdapter<String>(MainActivity.this, R.layout.custom_dropdown, moodList);
+                moodListView.setAdapter(showAdapter);
+                ///get date
+                //if date == date // loop
+            }
+        });
     }
 
 

@@ -7,50 +7,47 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:background="@color/cream_background"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
+
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/include"
+        android:layout_width="405dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:mcv_calendarMode="week"
+        app:mcv_firstDayOfWeek="monday"
         app:mcv_selectionColor="@color/checkbox"
         app:mcv_selectionMode="single"
         app:mcv_showOtherDates="all"
-        />
-
-
-    <include
-
-        android:id="@+id/include"
-        layout="@xml/navigation_bar"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:mcv_tileHeight="match_parent"
+        app:mcv_tileSize="match_parent"
+        app:mcv_tileWidth="match_parent" />
 
     <ListView
         android:id="@+id/moodListRecyclerView"
-        android:layout_width="412dp"
-        android:layout_height="477dp"
+        android:layout_width="413dp"
+        android:layout_height="616dp"
         android:background="@color/cream_background"
         android:divider="@color/checkbox"
         android:dividerHeight="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421">
+        app:layout_constraintVertical_bias="0.517">
+
 
     </ListView>
 
-
+    <include
+        android:id="@+id/include"
+        layout="@xml/navigation_bar"
+ />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

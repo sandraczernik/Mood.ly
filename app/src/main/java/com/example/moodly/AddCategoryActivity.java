@@ -12,6 +12,10 @@ import android.widget.CheckBox;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.material.datepicker.MaterialCalendar;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -29,6 +33,7 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
     CheckBox readingchk;
     CheckBox gamingchk;
     Button activityBtn;
+    String formattedDate;
     String formattedTime;
     String time;
     @Override
@@ -46,7 +51,7 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
 
         DB = new DBHandler(AddCategoryActivity.this);
 
-        Calendar calendar = Calendar.getInstance();
+
 //       int hour = calendar.get(Calendar.HOUR);
 //       int minute = calendar.get(Calendar.MINUTE);
         //formattedTime = (Integer.parseInt(Integer.toString(hour)) + ":" + Integer.parseInt(Integer.toString(minute)));
@@ -56,9 +61,24 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+
+
+
+
+
     @Override
     public void onClick(View view) {
         if ((Button) view == activityBtn) {
+
+
+
+
+
+            DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+            String date = dateFormatter.format(Calendar.getInstance().getTime());
+            formattedDate = date.toString();
+            System.out.println(formattedDate);
+
 
             //TIME FOR DATABASE
             DateFormat df = new SimpleDateFormat("HH:mm");
@@ -76,7 +96,7 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
 
 
 
-            Boolean insertMood = DB.insertNewMood(key, activities, formattedTime);
+            Boolean insertMood = DB.insertNewMood(key, activities, formattedTime, formattedDate);
             if (insertMood){
                String moodAdded = "A new mood has been added";
                 Toast.makeText(getApplicationContext(), moodAdded, Toast.LENGTH_SHORT).show();

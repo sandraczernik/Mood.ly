@@ -13,6 +13,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.Calendar;
+
 public class CalendarActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     public BottomNavigationItemView bottomNavigationItemView;
@@ -22,6 +24,11 @@ public class CalendarActivity extends AppCompatActivity implements BottomNavigat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
+
+        Calendar calendar = Calendar.getInstance();
+
+
 
 
         bottomNavigationItemView =  findViewById(R.id.homeButton);

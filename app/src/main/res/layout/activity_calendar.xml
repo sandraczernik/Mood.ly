@@ -15,7 +15,7 @@
         android:id="@+id/calendarTextView"
         android:layout_width="147dp"
         android:layout_height="54dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="@string/calendarTitle"
         android:textSize="24sp"
@@ -24,33 +24,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/calendarInfoTextView"
-        android:layout_width="273dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:text="@string/calendarInfo"
 
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/calendarView"
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:layout_width="412dp"
+        android:layout_height="464dp"
+        android:layout_marginTop="76dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:mcv_calendarMode="month"
+        app:mcv_selectionMode="none">
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="384dp"
-        android:layout_height="406dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
-
+    </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

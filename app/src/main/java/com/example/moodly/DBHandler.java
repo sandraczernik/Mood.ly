@@ -5,7 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -18,7 +20,7 @@ public class DBHandler extends SQLiteOpenHelper {
         super(context, DBNAME, null, 1);
         SQLiteDatabase MyDB = this.getWritableDatabase();
     }
-    private static Context Ccontext;
+
     // creating table to store all information added by user on AddMoodActivity.java
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
@@ -26,7 +28,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 "moodID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "moodType TEXT," +
                 "activities TEXT," +
-                "moodDate TEXT)"
+                "moodDate TEXT," +
+                "moodCalendarDate TEXT)"
         );
 
 //        MyDB.execSQL("create Table if not exists moodImages(" +
@@ -38,7 +41,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 //TODO: add new categories + display on main page
-    public Boolean insertNewMood (String moodType, List<String> activities, String moodDate){
+    public Boolean insertNewMood (String moodType, List<String> activities, String moodDate, String moodCalendarDate){
 
         StringBuilder builder = new StringBuilder();
         String seperator = ", ";
@@ -56,6 +59,7 @@ public class DBHandler extends SQLiteOpenHelper {
         contentValues.put("moodType", moodType);
         contentValues.put("activities", activityResult);
         contentValues.put("moodDate", moodDate);
+        contentValues.put("moodCalendarDate", moodCalendarDate);
         long result = MyDB.insert("moods", null, contentValues);
         System.out.println("result" + result);
         if (result == -1) return false;
@@ -79,6 +83,27 @@ public class DBHandler extends SQLiteOpenHelper {
             } while (cursorMoodList.moveToNext());
         } cursorMoodList.close();
         return listMoods;
+    }
+
+    public ArrayList<String> getDate(String currentDate) {
+        System.out.println("HELLO i am" + currentDate);
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        String query = "SELECT moodType, activities, moodDate FROM moods WHERE moodCalendarDate =" + "'" + currentDate + "'";
+        Cursor cursorMoodList = MyDB.rawQuery(query,null);
+        ArrayList<String> listMoods = new ArrayList<>();
+
+        if (cursorMoodList.moveToFirst()){
+            do {
+                String currentMoodType = cursorMoodList.getString(0);
+                String currentActivity = cursorMoodList.getString(1);
+                String currentMoodTime = cursorMoodList.getString(2);
+                String moodEntry = currentMoodType + "\n" + currentActivity + "\n" + currentMoodTime;
+                listMoods.add(moodEntry);
+                System.out.print("MOOD ENTRY" + moodEntry);
+            } while (cursorMoodList.moveToNext());
+        } cursorMoodList.close();
+        return listMoods;
+
     }
 
     @Override
