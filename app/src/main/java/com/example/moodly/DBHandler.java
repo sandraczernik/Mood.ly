@@ -112,7 +112,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<Pair<String,String> >  getTypeAmount() {
 
         SQLiteDatabase MyDB = this.getReadableDatabase();
-        String query = "SELECT  moodType ,count(moodType) FROM moods GROUP BY moodType ";
+        String query = "SELECT  moodType ,count(moodType) FROM moods GROUP BY moodType ORDER BY moodType ASC ";
         Cursor cursor = MyDB.rawQuery(query,null);
 
         ArrayList<Pair<String,String>> listCount = new ArrayList<>();

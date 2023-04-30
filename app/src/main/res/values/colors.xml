@@ -9,5 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="checkbox">#9E6D3A</color>
     <color name="checkbox_selected">#FF000000</color>
+    <color name="red">#C61313</color>
+    <color name="blue">#4860B8</color>
+    <color name="light_blue">#50BAC8</color>
+    <color name="turqoise">#30C697</color>
+    <color name="light_green">#37A62B</color>
+    <color name="green">#105E14</color>
 
 </resources>
+

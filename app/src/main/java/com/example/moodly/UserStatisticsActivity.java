@@ -16,6 +16,8 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -87,7 +89,7 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
 //        calendarMonthView.setDateSelected(CalendarDay.today(), true);
 
         barChart = findViewById(R.id.idBarChart);
-
+        barChart.isDrawValueAboveBarEnabled();
         // calling method to get bar entries.
         getBarEntries();
 
@@ -101,12 +103,35 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
         // below line is to set data
         // to our bar chart.
         barChart.setData(barData);
-
+        barChart.setDragEnabled(true);
         // adding color to our bar data set.
-        barDataSet.setColors(ColorTemplate.PASTEL_COLORS);
+
+
+
 
         // setting text color.
         barDataSet.setValueTextColor(Color.BLACK);
+        barChart.getXAxis().setGranularityEnabled(true);
+        barChart.getXAxis().setGranularity(1);
+
+        barChart.getAxisLeft().setGranularityEnabled(true);
+        barChart.getAxisLeft().setGranularity(1);
+        barChart.getAxisRight().setGranularityEnabled(true);
+        barChart.getAxisRight().setGranularity(1);
+
+        final String[] labels = new String[] {"Angry", "Crying", "Happy", "Sad", "Unsure", "Very Happy",};
+        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+
+
+
+        // sets colors for the dataset, resolution of the resource name to a "real" color is done internally
+        barDataSet.setColors(new int[]{Color.parseColor("#C61313"),
+                Color.parseColor("#4860B8"),
+                Color.parseColor("#37A62B"),
+                Color.parseColor("#50BAC8"),
+                Color.parseColor("#30C697"),
+                Color.parseColor("#105E14")});
+
 
         // setting text size
         barDataSet.setValueTextSize(16f);
