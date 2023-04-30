@@ -22,10 +22,10 @@
             android:name=".MoreActivity"
             android:exported="false" />
         <activity
-            android:name=".StatsActivity"
+            android:name=".UserProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".CalendarActivity"
+            android:name=".UserStatisticsActivity"
             android:exported="false" />
         <activity
             android:name=".WelcomeActivity3"

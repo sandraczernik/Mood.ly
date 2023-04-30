@@ -100,8 +100,13 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
             if (insertMood){
                String moodAdded = "A new mood has been added";
                 Toast.makeText(getApplicationContext(), moodAdded, Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("key", formattedDate);
                 startActivity(intent);
+
+
+
             }
 
 

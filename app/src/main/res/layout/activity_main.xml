@@ -25,7 +25,9 @@
         app:mcv_showOtherDates="all"
         app:mcv_tileHeight="match_parent"
         app:mcv_tileSize="match_parent"
-        app:mcv_tileWidth="match_parent" />
+        app:mcv_tileWidth="match_parent"
+
+        />
 
     <ListView
         android:id="@+id/moodListRecyclerView"

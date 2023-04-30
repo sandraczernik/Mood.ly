@@ -13,7 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class StatsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class UserProfileActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     public BottomNavigationItemView bottomNavigationItemView;
     public FloatingActionButton floatingActionButton;
@@ -21,7 +21,35 @@ public class StatsActivity extends AppCompatActivity implements BottomNavigation
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stats);
+        setContentView(R.layout.activity_userprofile);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         bottomNavigationItemView =  findViewById(R.id.homeButton);
@@ -35,23 +63,23 @@ public class StatsActivity extends AppCompatActivity implements BottomNavigation
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.homeButton:
-                        Intent intentHome = new Intent(StatsActivity.this , MainActivity.class);
+                        Intent intentHome = new Intent(UserProfileActivity.this , MainActivity.class);
                         startActivity(intentHome);
                         return true;
                     case R.id.calendarButton:
-                        Intent intentCalendar = new Intent(StatsActivity.this , CalendarActivity.class);
+                        Intent intentCalendar = new Intent(UserProfileActivity.this , UserStatisticsActivity.class);
                         startActivity(intentCalendar);
                         return true;
                     case R.id.addButton:
-                        Intent intentAdd = new Intent(StatsActivity.this , AddMoodActivity.class);
+                        Intent intentAdd = new Intent(UserProfileActivity.this , AddMoodActivity.class);
                         startActivity(intentAdd);
                         return true;
                     case R.id.statsButton:
-                        Intent intentStats = new Intent(StatsActivity.this , StatsActivity.class);
+                        Intent intentStats = new Intent(UserProfileActivity.this , UserProfileActivity.class);
                         startActivity(intentStats);
                         return true;
                     case R.id.moreButton:
-                        Intent intentMore = new Intent(StatsActivity.this , MoreActivity.class);
+                        Intent intentMore = new Intent(UserProfileActivity.this , MoreActivity.class);
                         startActivity(intentMore);
                         return true;
                 }
@@ -64,7 +92,7 @@ public class StatsActivity extends AppCompatActivity implements BottomNavigation
             @Override
             public void onClick(View view) {
                 if ((FloatingActionButton)view == floatingActionButton){
-                    Intent intentAdd = new Intent(StatsActivity.this, AddMoodActivity.class);
+                    Intent intentAdd = new Intent(UserProfileActivity.this, AddMoodActivity.class);
                     startActivity(intentAdd);
                 }}
         });

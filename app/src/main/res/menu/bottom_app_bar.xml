@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/homeButton"
-        android:icon="@drawable/home"
-        android:title="Home"
+        android:icon="@drawable/calendar"
+        android:title="Calendar"
 
         app:showAsAction="always" />
     <item
         android:id="@+id/calendarButton"
-        android:title="Calendar"
-        android:icon="@drawable/calendar"
+        android:title="Stats"
+        android:icon="@drawable/stats"
         app:showAsAction="always" />
     <item
         android:id="@+id/placeholder"
@@ -18,8 +18,8 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/statsButton"
-        android:title="Stats"
-        android:icon="@drawable/stats"
+        android:title="Profile"
+        android:icon="@drawable/profile"
         app:showAsAction="always" />
     <item
         android:id="@+id/moreButton"

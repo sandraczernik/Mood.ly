@@ -39,7 +39,7 @@ public class MoreActivity extends AppCompatActivity implements BottomNavigationV
                         startActivity(intentHome);
                         return true;
                     case R.id.calendarButton:
-                        Intent intentCalendar = new Intent(MoreActivity.this , CalendarActivity.class);
+                        Intent intentCalendar = new Intent(MoreActivity.this , UserStatisticsActivity.class);
                         startActivity(intentCalendar);
                         return true;
                     case R.id.addButton:
@@ -47,7 +47,7 @@ public class MoreActivity extends AppCompatActivity implements BottomNavigationV
                         startActivity(intentAdd);
                         return true;
                     case R.id.statsButton:
-                        Intent intentStats = new Intent(MoreActivity.this , StatsActivity.class);
+                        Intent intentStats = new Intent(MoreActivity.this , UserProfileActivity.class);
                         startActivity(intentStats);
                         return true;
                     case R.id.moreButton:

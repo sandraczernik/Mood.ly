@@ -106,6 +106,29 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
+
+
+    public ArrayList<String> getTypeAmount() {
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        String query = "SELECT  moodType ,count(moodType) FROM moods GROUP BY moodType ";
+        Cursor cursor = MyDB.rawQuery(query,null);
+        ArrayList<String> listCount = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            do {
+                String currentMoodType = cursor.getString(0);
+                String currentCount = cursor.getString(1);
+                String moodEntry = currentMoodType + "\n" + currentCount;
+                listCount.add(moodEntry);
+                System.out.print("MOOD ENTRY" + moodEntry);
+            } while (cursor.moveToNext());
+        } cursor.close();
+        return listCount;
+    }
+
+
+
+
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
         MyDB.execSQL("drop Table if exists moods");

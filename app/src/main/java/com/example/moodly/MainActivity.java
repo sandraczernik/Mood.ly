@@ -2,39 +2,25 @@ package com.example.moodly;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.datepicker.MaterialCalendar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -51,15 +37,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     MaterialCalendarView materialCalView;
     String currentDate;
     // displaying list
+    String formattedDate;
     private ArrayList<String> moodList = new ArrayList<>();
     ListView moodListView;
 
     Drawable veryHappyImage;
-String veryhappyBitmap;
+    String veryhappyBitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Intent intent = getIntent();
+        formattedDate = intent.getStringExtra("key");
+        System.out.println("DATE PASSED " +formattedDate);
 
         DB = new DBHandler(MainActivity.this);
         MaterialCalendarView materialCalView = findViewById(R.id.calendarView);
@@ -69,7 +61,12 @@ String veryhappyBitmap;
         month = currentDay.getMonth();
         day = currentDay.getDay();
 
+
+
+
         String currentDate = String.format("%02d/%02d/%04d", day, month, year);
+
+
         moodList = DB.getDate(currentDate);
         moodListView = findViewById(R.id.moodListRecyclerView);
 
@@ -105,11 +102,12 @@ String veryhappyBitmap;
                         startActivity(intentHome);
                         return true;
                     case R.id.calendarButton:
-                        Intent intentCalendar = new Intent(MainActivity.this, CalendarActivity.class);
+                        Intent intentCalendar = new Intent(MainActivity.this, UserStatisticsActivity.class);
+                        intentCalendar.putExtra("key", formattedDate);
                         startActivity(intentCalendar);
                         return true;
                     case R.id.statsButton:
-                        Intent intentStats = new Intent(MainActivity.this, StatsActivity.class);
+                        Intent intentStats = new Intent(MainActivity.this, UserProfileActivity.class);
                         startActivity(intentStats);
                         return true;
                     case R.id.moreButton:
@@ -152,7 +150,7 @@ String veryhappyBitmap;
 //                builder.append("/");
 //                builder.append(year);
 //                currentDate = builder.toString();
-                System.out.println(String.format("%02d/%02d/%04d", day, month, year));
+                //System.out.println(String.format("%02d/%02d/%04d", day, month, year));
                 String currentDate = String.format("%02d/%02d/%04d", day, month, year);
 
 
