@@ -79,10 +79,22 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
         countListView = findViewById(R.id.countListView);
 
 
+            // creating a new array list
+        ArrayList<String> values = new ArrayList<>();
+            for (int i = 0; i < countList.size(); i++) {
 
-        ArrayAdapter<Pair<String,String>>showAdapter;
+                String key = countList.get(i).getFirst();
+                String value = countList.get(i).getSecond();
+                values.add(key + " " + value);
+
+                System.out.println("KEY" + key);
+                System.out.println("VALUE" + value);
+            }
+
+
+        ArrayAdapter<String>showAdapter;
         showAdapter
-                = new ArrayAdapter<Pair<String,String>>(UserStatisticsActivity.this, R.layout.custom_dropdown, countList);
+                = new ArrayAdapter<String>(UserStatisticsActivity.this, R.layout.custom_dropdown, values);
         countListView.setAdapter(showAdapter);
 //
 //        MaterialCalendarView calendarMonthView = findViewById(R.id.calendarMonthView);
@@ -106,14 +118,15 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
         barChart.setDragEnabled(true);
         // adding color to our bar data set.
 
-
-
-
+        barChart.setNoDataText("Please add a mood to view the chart");
+        barChart.setDrawGridBackground(false);
+        barChart.setDragEnabled(false);
+        barChart.setBackgroundColor(Color.parseColor("#EDE1D2"));
         // setting text color.
         barDataSet.setValueTextColor(Color.BLACK);
         barChart.getXAxis().setGranularityEnabled(true);
         barChart.getXAxis().setGranularity(1);
-
+        barChart.setScaleEnabled(false);
         barChart.getAxisLeft().setGranularityEnabled(true);
         barChart.getAxisLeft().setGranularity(1);
         barChart.getAxisRight().setGranularityEnabled(true);
@@ -152,6 +165,8 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
             System.out.println("KEY" + key);
             System.out.println("VALUE" + value);
         }
+
+
 
 
         bottomNavigationItemView =  findViewById(R.id.homeButton);
