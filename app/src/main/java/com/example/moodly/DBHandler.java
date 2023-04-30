@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import kotlin.Pair;
 
 
 //handles all database methods
@@ -108,18 +109,22 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
-    public ArrayList<String> getTypeAmount() {
+    public ArrayList<Pair<String,String> >  getTypeAmount() {
+
         SQLiteDatabase MyDB = this.getReadableDatabase();
         String query = "SELECT  moodType ,count(moodType) FROM moods GROUP BY moodType ";
         Cursor cursor = MyDB.rawQuery(query,null);
-        ArrayList<String> listCount = new ArrayList<>();
+
+        ArrayList<Pair<String,String>> listCount = new ArrayList<>();
 
         if (cursor.moveToFirst()){
             do {
+
                 String currentMoodType = cursor.getString(0);
                 String currentCount = cursor.getString(1);
+                Pair<String, String> pair = new Pair<>(currentMoodType,currentCount);
                 String moodEntry = currentMoodType + "\n" + currentCount;
-                listCount.add(moodEntry);
+                listCount.add(pair);
                 System.out.print("MOOD ENTRY" + moodEntry);
             } while (cursor.moveToNext());
         } cursor.close();

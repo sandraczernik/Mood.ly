@@ -8,12 +8,11 @@
     tools:context=".UserStatisticsActivity">
 
 
-
     <TextView
         android:id="@+id/profileTextView"
         android:layout_width="147dp"
         android:layout_height="54dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:text="@string/profileTitle"
         android:textSize="24sp"
@@ -22,7 +21,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/idBarChart"
+        android:layout_width="411dp"
+        android:layout_height="198dp"
+        android:layout_marginBottom="120dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <include
         android:id="@+id/include"

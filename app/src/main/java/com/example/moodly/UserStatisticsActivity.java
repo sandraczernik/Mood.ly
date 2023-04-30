@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,6 +25,8 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.util.ArrayList;
+
+import kotlin.Pair;
 
 public class UserStatisticsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -35,10 +43,24 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
     MaterialCalendarView calendarMonthView;
     ListView countListView;
     ListView testing;
-    private ArrayList<String> countList = new ArrayList<>();
+    private ArrayList<Pair<String, String>> countList = new ArrayList<>();
 
     private ArrayList<String> moodCountList = new ArrayList<>();
     String formattedDate;
+
+
+
+    // variable for our bar chart
+    BarChart barChart;
+
+    // variable for our bar data.
+    BarData barData;
+
+    // variable for our bar data set.
+    BarDataSet barDataSet;
+
+    // array list for storing entries.
+    ArrayList barEntriesArrayList;
     private String testList ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,22 +73,60 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
         DB = new DBHandler(UserStatisticsActivity.this);
 
 
-
-
-
-
-
         countList = DB.getTypeAmount();
         countListView = findViewById(R.id.countListView);
 
-        ArrayAdapter<String> showAdapter;
+
+
+        ArrayAdapter<Pair<String,String>>showAdapter;
         showAdapter
-                = new ArrayAdapter<String>(UserStatisticsActivity.this, R.layout.custom_dropdown, countList);
+                = new ArrayAdapter<Pair<String,String>>(UserStatisticsActivity.this, R.layout.custom_dropdown, countList);
         countListView.setAdapter(showAdapter);
 //
 //        MaterialCalendarView calendarMonthView = findViewById(R.id.calendarMonthView);
 //        calendarMonthView.setDateSelected(CalendarDay.today(), true);
 
+        barChart = findViewById(R.id.idBarChart);
+
+        // calling method to get bar entries.
+        getBarEntries();
+
+        // creating a new bar data set.
+        barDataSet = new BarDataSet(barEntriesArrayList, "Total Moods Added");
+
+        // creating a new bar data and
+        // passing our bar data set.
+        barData = new BarData(barDataSet);
+
+        // below line is to set data
+        // to our bar chart.
+        barChart.setData(barData);
+
+        // adding color to our bar data set.
+        barDataSet.setColors(ColorTemplate.PASTEL_COLORS);
+
+        // setting text color.
+        barDataSet.setValueTextColor(Color.BLACK);
+
+        // setting text size
+        barDataSet.setValueTextSize(16f);
+        barChart.getDescription().setEnabled(false);
+    }
+
+    private void getBarEntries() {
+        // creating a new array list
+        barEntriesArrayList = new ArrayList<>();
+
+
+        for (int i = 0; i < countList.size(); i++) {
+
+            String key = countList.get(i).getFirst();
+            String value = countList.get(i).getSecond();
+            barEntriesArrayList.add(new BarEntry(i, Float.parseFloat(value)));
+
+            System.out.println("KEY" + key);
+            System.out.println("VALUE" + value);
+        }
 
 
         bottomNavigationItemView =  findViewById(R.id.homeButton);
