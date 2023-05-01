@@ -19,12 +19,6 @@
             android:name=".AddMoodActivity"
             android:exported="false" />
         <activity
-            android:name=".MoreActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UserProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".UserStatisticsActivity"
             android:exported="false" />
         <activity

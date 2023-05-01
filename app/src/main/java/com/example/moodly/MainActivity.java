@@ -88,8 +88,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationItemView = findViewById(R.id.homeButton);
         bottomNavigationItemView = findViewById(R.id.calendarButton);
         floatingActionButton = findViewById(R.id.addButton);
-        bottomNavigationItemView = findViewById(R.id.statsButton);
-        bottomNavigationItemView = findViewById(R.id.moreButton);
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -106,14 +105,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         intentCalendar.putExtra("key", formattedDate);
                         startActivity(intentCalendar);
                         return true;
-                    case R.id.statsButton:
-                        Intent intentStats = new Intent(MainActivity.this, UserProfileActivity.class);
-                        startActivity(intentStats);
-                        return true;
-                    case R.id.moreButton:
-                        Intent intentMore = new Intent(MainActivity.this, MoreActivity.class);
-                        startActivity(intentMore);
-                        return true;
+
                 }
                 return false;
             }

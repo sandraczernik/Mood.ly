@@ -1,11 +1,14 @@
 package com.example.moodly;
 
+import androidx.annotation.FontRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,10 +16,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
@@ -27,6 +37,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import kotlin.Pair;
 
@@ -50,7 +61,7 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
     private ArrayList<String> moodCountList = new ArrayList<>();
     String formattedDate;
 
-
+        PieChart pieChart;
 
     // variable for our bar chart
     BarChart barChart;
@@ -60,9 +71,10 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
 
     // variable for our bar data set.
     BarDataSet barDataSet;
-
+        PieData pieData;
+    PieDataSet pieDataset;
     // array list for storing entries.
-    ArrayList barEntriesArrayList;
+    ArrayList<PieEntry> pieEntriesArrayList;
     private String testList ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,81 +99,143 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
                 String value = countList.get(i).getSecond();
                 values.add(key + " " + value);
 
+//
+//                if (countList.get(i).getFirst() == "Angry") {
+//
+//                }
                 System.out.println("KEY" + key);
                 System.out.println("VALUE" + value);
-            }
 
+            }
 
         ArrayAdapter<String>showAdapter;
         showAdapter
                 = new ArrayAdapter<String>(UserStatisticsActivity.this, R.layout.custom_dropdown, values);
         countListView.setAdapter(showAdapter);
 //
+        ArrayList<Integer> colors = new ArrayList<>();
+        colors.add(Color.parseColor("#C61313"));
+        colors.add(Color.parseColor("#4860B8"));
+        colors.add(Color.parseColor("#37A62B"));
+        colors.add(Color.parseColor("#50BAC8"));
+        colors.add(Color.parseColor("#30C697"));
+        colors.add( Color.parseColor("#105E14"));
+
+
+
 //        MaterialCalendarView calendarMonthView = findViewById(R.id.calendarMonthView);
 //        calendarMonthView.setDateSelected(CalendarDay.today(), true);
+        ArrayList<PieEntry> values2 = new ArrayList<>();
+        for (int i = 0; i < countList.size(); i++) {
 
-        barChart = findViewById(R.id.idBarChart);
-        barChart.isDrawValueAboveBarEnabled();
+            String key = countList.get(i).getFirst();
+            String value = countList.get(i).getSecond();
+            values2.add(new PieEntry(Float.parseFloat(value),key));
+
+//
+//                if (countList.get(i).getFirst() == "Angry") {
+//
+//                }
+            System.out.println("KEY" + key);
+            System.out.println("VALUE" + value);
+
+        }
+        pieDataset = new PieDataSet(values2, ".");
+        pieDataset.setColors(ColorTemplate.PASTEL_COLORS);
+
+        pieChart = findViewById(R.id.piechart);
         // calling method to get bar entries.
         getBarEntries();
+//        ArrayList<String > labels = new ArrayList<String>();
+//        labels.add("Angry");
+//        labels.add("Crying");
+//        labels.add("Happy");
+//        labels.add("Sad");
+//        labels.add("Unsure");
+//        labels.add("Very Happy");
 
         // creating a new bar data set.
-        barDataSet = new BarDataSet(barEntriesArrayList, "Total Moods Added");
+
 
         // creating a new bar data and
         // passing our bar data set.
-        barData = new BarData(barDataSet);
+
+
+
+        pieData = new PieData(pieDataset);
+
 
         // below line is to set data
         // to our bar chart.
-        barChart.setData(barData);
-        barChart.setDragEnabled(true);
+
+
+        pieChart.setData(pieData);
         // adding color to our bar data set.
 
-        barChart.setNoDataText("Please add a mood to view the chart");
-        barChart.setDrawGridBackground(false);
-        barChart.setDragEnabled(false);
-        barChart.setBackgroundColor(Color.parseColor("#EDE1D2"));
+        pieChart.setNoDataText("Please add a mood to view the chart");
+
+        pieChart.setBackgroundColor(Color.parseColor("#EDE1D2"));
         // setting text color.
-        barDataSet.setValueTextColor(Color.BLACK);
-        barChart.getXAxis().setGranularityEnabled(true);
-        barChart.getXAxis().setGranularity(1);
-        barChart.setScaleEnabled(false);
-        barChart.getAxisLeft().setGranularityEnabled(true);
-        barChart.getAxisLeft().setGranularity(1);
-        barChart.getAxisRight().setGranularityEnabled(true);
-        barChart.getAxisRight().setGranularity(1);
+        pieDataset.setValueTextColor(Color.BLACK);
 
-        final String[] labels = new String[] {"Angry", "Crying", "Happy", "Sad", "Unsure", "Very Happy",};
-        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+//        final String[] labels = new String[] {"Angry", "Crying", "Happy", "Sad", "Unsure", "Very Happy",};
+//        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
 
 
 
-        // sets colors for the dataset, resolution of the resource name to a "real" color is done internally
-        barDataSet.setColors(new int[]{Color.parseColor("#C61313"),
-                Color.parseColor("#4860B8"),
-                Color.parseColor("#37A62B"),
-                Color.parseColor("#50BAC8"),
-                Color.parseColor("#30C697"),
-                Color.parseColor("#105E14")});
-
-
+//         //sets colors for the dataset, resolution of the resource name to a "real" color is done internally
+//        pieDataset.setColors(new int[]{Color.parseColor("#C61313"),
+//                Color.parseColor("#4860B8"),
+//                Color.parseColor("#37A62B"),
+//                Color.parseColor("#50BAC8"),
+//                Color.parseColor("#30C697"),
+//                Color.parseColor("#105E14")});
+        //pieDataset.setColors(ColorTemplate.PASTEL_COLORS);
+//        pieDataset.setColors(ColorTemplate.PASTEL_COLORS);
         // setting text size
-        barDataSet.setValueTextSize(16f);
-        barChart.getDescription().setEnabled(false);
+        pieDataset.setValueTextSize(16f);
+
+
+        for (int i = 0; i < countList.size(); i++) {
+
+            System.out.println(values2.get(i).getValue());
+            System.out.println(values2.get(i).getLabel());
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     private void getBarEntries() {
         // creating a new array list
-        barEntriesArrayList = new ArrayList<>();
+        pieEntriesArrayList = new ArrayList<>();
 
 
         for (int i = 0; i < countList.size(); i++) {
 
             String key = countList.get(i).getFirst();
             String value = countList.get(i).getSecond();
-            barEntriesArrayList.add(new BarEntry(i, Float.parseFloat(value)));
+            pieEntriesArrayList.add(new PieEntry(Float.parseFloat(value), i));
+            Legend legend = pieChart.getLegend();
 
+
+
+
+
+            legend.setWordWrapEnabled(true);
+            System.out.println(legend);
+            legend.setEnabled(true);
             System.out.println("KEY" + key);
             System.out.println("VALUE" + value);
         }
@@ -169,11 +243,11 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
 
 
 
+
         bottomNavigationItemView =  findViewById(R.id.homeButton);
         bottomNavigationItemView = findViewById(R.id.calendarButton);
         floatingActionButton = findViewById(R.id.addButton);
-        bottomNavigationItemView =  findViewById(R.id.statsButton);
-        bottomNavigationItemView =  findViewById(R.id.moreButton);
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -191,14 +265,7 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
                         Intent intentAdd = new Intent(UserStatisticsActivity.this , AddMoodActivity.class);
                         startActivity(intentAdd);
                         return true;
-                    case R.id.statsButton:
-                        Intent intentStats = new Intent(UserStatisticsActivity.this , UserProfileActivity.class);
-                        startActivity(intentStats);
-                        return true;
-                    case R.id.moreButton:
-                        Intent intentMore = new Intent(UserStatisticsActivity.this , MoreActivity.class);
-                        startActivity(intentMore);
-                        return true;
+
                 }
                 return false;
             }
