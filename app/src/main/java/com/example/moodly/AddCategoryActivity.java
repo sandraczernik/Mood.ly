@@ -26,16 +26,24 @@ import java.util.List;
 
 public class AddCategoryActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //Database
     DBHandler DB;
-    String key;
 
-    List<String> activities = new ArrayList<>();
-    CheckBox readingchk;
-    CheckBox gamingchk;
-    Button activityBtn;
+    //Dates & Time
     String formattedDate;
     String formattedTime;
-    String time;
+
+    //Buttons
+    Button activityBtn;
+    Button backBtn;
+
+    //Intent from previous activity
+    String key;
+
+    //Array list to save to DB
+    List<String> activities = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +56,7 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
         System.out.println(key);
-
+        backBtn = (Button) findViewById(R.id.addMoodBackButton2);
         DB = new DBHandler(AddCategoryActivity.this);
 
 
@@ -68,7 +76,16 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
-        if ((Button) view == activityBtn) {
+
+        if ((Button)view == backBtn){
+            Log.i("Back Button", "Back Button Clicked");
+            Intent intent = new Intent(this, AddMoodActivity.class);
+            startActivity(intent);
+        }
+
+
+
+        if ((Button) view == activityBtn && !activities.isEmpty()) {
 
 
 
@@ -111,6 +128,9 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
 
 
 
+
+        }else{
+                Toast.makeText(getApplicationContext(),"Please select atleast one activity",Toast.LENGTH_SHORT).show();
 
         }
     }

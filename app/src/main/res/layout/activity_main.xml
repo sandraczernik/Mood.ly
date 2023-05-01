@@ -29,6 +29,15 @@
 
         />
 
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="413dp"
+        android:layout_height="293dp"
+        android:text="Your mood list is empty"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <ListView
         android:id="@+id/moodListRecyclerView"
         android:layout_width="413dp"
@@ -42,6 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.517">
+
 
 
     </ListView>

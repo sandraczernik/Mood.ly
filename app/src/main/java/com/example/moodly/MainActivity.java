@@ -40,9 +40,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     String formattedDate;
     private ArrayList<String> moodList = new ArrayList<>();
     ListView moodListView;
-
+    TextView emptyText;
     Drawable veryHappyImage;
     String veryhappyBitmap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,12 +65,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
 
 
+
         String currentDate = String.format("%02d/%02d/%04d", day, month, year);
 
 
         moodList = DB.getDate(currentDate);
         moodListView = findViewById(R.id.moodListRecyclerView);
-
+//        emptyText = (TextView)findViewById(android.R.id.empty);
+//        moodListView.setEmptyView(emptyText);
         ArrayAdapter<String> showAdapter;
         showAdapter
                 = new ArrayAdapter<String>(MainActivity.this, R.layout.custom_dropdown, moodList);

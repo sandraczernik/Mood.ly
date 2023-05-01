@@ -140,11 +140,12 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
             System.out.println("VALUE" + value);
 
         }
-        pieDataset = new PieDataSet(values2, ".");
+        pieDataset = new PieDataSet(values2, "");
         pieDataset.setColors(ColorTemplate.PASTEL_COLORS);
-
         pieChart = findViewById(R.id.piechart);
+        pieChart.setDrawHoleEnabled(false);
         // calling method to get bar entries.
+
         getBarEntries();
 //        ArrayList<String > labels = new ArrayList<String>();
 //        labels.add("Angry");
@@ -194,7 +195,7 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
 //        pieDataset.setColors(ColorTemplate.PASTEL_COLORS);
         // setting text size
         pieDataset.setValueTextSize(16f);
-
+        pieChart.getDescription().setEnabled(false);
 
         for (int i = 0; i < countList.size(); i++) {
 
@@ -240,7 +241,7 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
             System.out.println("VALUE" + value);
         }
 
-
+        pieChart.getLegend().setEnabled(false);
 
 
 

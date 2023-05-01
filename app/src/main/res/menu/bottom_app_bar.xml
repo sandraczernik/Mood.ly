@@ -10,7 +10,7 @@
 
     <item
         android:id="@+id/placeholder"
-        android:title=""
+        android:title="    "
         app:showAsAction="always" />
 
     <item

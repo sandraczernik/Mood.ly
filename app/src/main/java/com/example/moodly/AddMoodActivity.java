@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class AddMoodActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -118,13 +119,20 @@ public class AddMoodActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(intent);
         }
 
-        if ((Button)view == nextBtn){
-            Log.i("Next Button", "Next Button Clicked");
-            Intent intent = new Intent(this, AddCategoryActivity.class);
-            intent.putExtra("key", selectedMood);
-            startActivity(intent);
-        }
+        if ((Button)view == nextBtn) {
+            if (selectedMood != "") {
+                Log.i("Next Button", "Next Button Clicked");
+                Intent intent = new Intent(this, AddCategoryActivity.class);
+                intent.putExtra("key", selectedMood);
+                startActivity(intent);
+            } else {
 
+                Toast.makeText(getApplicationContext(), "Please select a mood", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        }
 
     }
 
