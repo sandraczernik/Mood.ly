@@ -7,7 +7,6 @@
     android:background="@color/cream_background"
     tools:context=".UserStatisticsActivity">
 
-
     <TextView
         android:id="@+id/profileTextView"
         android:layout_width="147dp"
@@ -16,11 +15,9 @@
         android:gravity="center"
         android:text="@string/profileTitle"
         android:textSize="24sp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/piechart"
@@ -31,7 +28,9 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.232"></com.github.mikephil.charting.charts.PieChart>
+        app:layout_constraintVertical_bias="0.232">
+
+    </com.github.mikephil.charting.charts.PieChart>
 
     <include
         android:id="@+id/include"
@@ -47,6 +46,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.733" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

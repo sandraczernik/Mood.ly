@@ -2,16 +2,12 @@ package com.example.moodly;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,83 +15,65 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-
-
-    //navigation
+    //Navigation
     public BottomNavigationItemView bottomNavigationItemView;
+    public BottomNavigationView bottomNavigationView;
     public FloatingActionButton floatingActionButton;
-    public TextView textView;
+
+    //Calendar
     CalendarDay currentDay;
     int year;
     int month;
     int day;
-    DBHandler DB;
-    MaterialCalendarView materialCalView;
-    String currentDate;
-    // displaying list
     String formattedDate;
+
+    //Database
+    DBHandler DB;
+
+    //Mood list for listView
     private ArrayList<String> moodList = new ArrayList<>();
     ListView moodListView;
-    TextView emptyText;
-    Drawable veryHappyImage;
-    String veryhappyBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Database setup
+        DB = new DBHandler(MainActivity.this);
 
+        //Receiving intent
         Intent intent = getIntent();
         formattedDate = intent.getStringExtra("key");
-        System.out.println("DATE PASSED " +formattedDate);
 
-        DB = new DBHandler(MainActivity.this);
+        //Assigning XML elements to variables
+        bottomNavigationItemView = findViewById(R.id.homeButton);
+        bottomNavigationItemView = findViewById(R.id.calendarButton);
+        floatingActionButton = findViewById(R.id.addButton);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        //Calendar set-up
         MaterialCalendarView materialCalView = findViewById(R.id.calendarView);
         materialCalView.setDateSelected(CalendarDay.today(), true);
         currentDay = materialCalView.getSelectedDate();
         year = currentDay.getYear();
         month = currentDay.getMonth();
         day = currentDay.getDay();
-
-
-
-
-
         String currentDate = String.format("%02d/%02d/%04d", day, month, year);
-
-
         moodList = DB.getDate(currentDate);
         moodListView = findViewById(R.id.moodListRecyclerView);
-//        emptyText = (TextView)findViewById(android.R.id.empty);
-//        moodListView.setEmptyView(emptyText);
+
+        //Adapter attaches database list to the listView
         ArrayAdapter<String> showAdapter;
         showAdapter
                 = new ArrayAdapter<String>(MainActivity.this, R.layout.custom_dropdown, moodList);
         moodListView.setAdapter(showAdapter);
-        //list of moods
 
-
-
-        //image saving
-        //getResources().getIdentifier("very_happy_smiley","drawable","com.app");
-        // WORKS System.out.println(getResources().getIdentifier("very_happy_smiley","drawable","com.example.moodly"));
-
-
-
-        //navigation
-        bottomNavigationItemView = findViewById(R.id.homeButton);
-        bottomNavigationItemView = findViewById(R.id.calendarButton);
-        floatingActionButton = findViewById(R.id.addButton);
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-
+        //Listener for bottom navigation
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -105,16 +83,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         return true;
                     case R.id.calendarButton:
                         Intent intentCalendar = new Intent(MainActivity.this, UserStatisticsActivity.class);
-                        intentCalendar.putExtra("key", formattedDate);
                         startActivity(intentCalendar);
                         return true;
-
                 }
                 return false;
             }
-
         });
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -126,8 +100,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
         });
 
-// LATER
-
+        //Calendar set-up to link up to database and show entries based on the day the user adds a mood
         materialCalView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
@@ -135,42 +108,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 year = currentDay.getYear();
                 month = currentDay.getMonth();
                 day = currentDay.getDay();
-
-
-
-//                StringBuilder builder = new StringBuilder();
-//                builder.append(day);
-//                builder.append("/");
-//                builder.append(month);
-//                builder.append("/");
-//                builder.append(year);
-//                currentDate = builder.toString();
-                //System.out.println(String.format("%02d/%02d/%04d", day, month, year));
                 String currentDate = String.format("%02d/%02d/%04d", day, month, year);
 
-
+                //Changes when calendar element is pressed for
                 moodList = DB.getDate(currentDate);
                 moodListView = findViewById(R.id.moodListRecyclerView);
 
+                //Attaches database to listview
                 ArrayAdapter<String> showAdapter;
                 showAdapter
                         = new ArrayAdapter<String>(MainActivity.this, R.layout.custom_dropdown, moodList);
                 moodListView.setAdapter(showAdapter);
-                ///get date
-                //if date == date // loop
             }
         });
     }
-
-
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
     }}
-
-
-
-
-
-
-
-

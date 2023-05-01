@@ -9,7 +9,6 @@
     android:background="@color/cream_background"
     tools:context=".MainActivity">
 
-
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
         android:layout_width="405dp"
@@ -26,7 +25,6 @@
         app:mcv_tileHeight="match_parent"
         app:mcv_tileSize="match_parent"
         app:mcv_tileWidth="match_parent"
-
         />
 
     <TextView
@@ -51,9 +49,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.517">
-
-
-
     </ListView>
 
     <include

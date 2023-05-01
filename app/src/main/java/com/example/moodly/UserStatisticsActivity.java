@@ -42,214 +42,90 @@ import java.util.Objects;
 import kotlin.Pair;
 
 public class UserStatisticsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
-
+    //Navigation
     public BottomNavigationItemView bottomNavigationItemView;
+    public BottomNavigationView bottomNavigationView;
     public FloatingActionButton floatingActionButton;
-    CalendarDay currentDay;
-    String currentDate;
-    TextView testTextView;
+
+    //Database
     DBHandler DB;
-    TextView test;
-    int year;
-    int month;
-    int day;
-    MaterialCalendarView calendarMonthView;
+
+    //ListView & PieChart
     ListView countListView;
-    ListView testing;
     private ArrayList<Pair<String, String>> countList = new ArrayList<>();
-
-    private ArrayList<String> moodCountList = new ArrayList<>();
-    String formattedDate;
-
-        PieChart pieChart;
-
-    // variable for our bar chart
-    BarChart barChart;
-
-    // variable for our bar data.
-    BarData barData;
-
-    // variable for our bar data set.
-    BarDataSet barDataSet;
-        PieData pieData;
+    PieChart pieChart;
+    PieData pieData;
     PieDataSet pieDataset;
-    // array list for storing entries.
     ArrayList<PieEntry> pieEntriesArrayList;
-    private String testList ="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userstatistics);
-
-        Intent intent = getIntent();
-        formattedDate = intent.getStringExtra("key");
-        System.out.println("DATE PASSED " +formattedDate);
+        //Database
         DB = new DBHandler(UserStatisticsActivity.this);
-
-
+        //Getting query with count() so total moods can be displayed
         countList = DB.getTypeAmount();
+
+        //XML to variable
         countListView = findViewById(R.id.countListView);
-
-
-            // creating a new array list
-        ArrayList<String> values = new ArrayList<>();
-            for (int i = 0; i < countList.size(); i++) {
-
-                String key = countList.get(i).getFirst();
-                String value = countList.get(i).getSecond();
-                values.add(key + " " + value);
-
-//
-//                if (countList.get(i).getFirst() == "Angry") {
-//
-//                }
-                System.out.println("KEY" + key);
-                System.out.println("VALUE" + value);
-
-            }
-
-        ArrayAdapter<String>showAdapter;
-        showAdapter
-                = new ArrayAdapter<String>(UserStatisticsActivity.this, R.layout.custom_dropdown, values);
-        countListView.setAdapter(showAdapter);
-//
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.parseColor("#C61313"));
-        colors.add(Color.parseColor("#4860B8"));
-        colors.add(Color.parseColor("#37A62B"));
-        colors.add(Color.parseColor("#50BAC8"));
-        colors.add(Color.parseColor("#30C697"));
-        colors.add( Color.parseColor("#105E14"));
-
-
-
-//        MaterialCalendarView calendarMonthView = findViewById(R.id.calendarMonthView);
-//        calendarMonthView.setDateSelected(CalendarDay.today(), true);
-        ArrayList<PieEntry> values2 = new ArrayList<>();
-        for (int i = 0; i < countList.size(); i++) {
-
-            String key = countList.get(i).getFirst();
-            String value = countList.get(i).getSecond();
-            values2.add(new PieEntry(Float.parseFloat(value),key));
-
-//
-//                if (countList.get(i).getFirst() == "Angry") {
-//
-//                }
-            System.out.println("KEY" + key);
-            System.out.println("VALUE" + value);
-
-        }
-        pieDataset = new PieDataSet(values2, "");
-        pieDataset.setColors(ColorTemplate.PASTEL_COLORS);
-        pieChart = findViewById(R.id.piechart);
-        pieChart.setDrawHoleEnabled(false);
-        // calling method to get bar entries.
-
-        getBarEntries();
-//        ArrayList<String > labels = new ArrayList<String>();
-//        labels.add("Angry");
-//        labels.add("Crying");
-//        labels.add("Happy");
-//        labels.add("Sad");
-//        labels.add("Unsure");
-//        labels.add("Very Happy");
-
-        // creating a new bar data set.
-
-
-        // creating a new bar data and
-        // passing our bar data set.
-
-
-
-        pieData = new PieData(pieDataset);
-
-
-        // below line is to set data
-        // to our bar chart.
-
-
-        pieChart.setData(pieData);
-        // adding color to our bar data set.
-
-        pieChart.setNoDataText("Please add a mood to view the chart");
-
-        pieChart.setBackgroundColor(Color.parseColor("#EDE1D2"));
-        // setting text color.
-        pieDataset.setValueTextColor(Color.BLACK);
-
-//        final String[] labels = new String[] {"Angry", "Crying", "Happy", "Sad", "Unsure", "Very Happy",};
-//        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
-
-
-
-//         //sets colors for the dataset, resolution of the resource name to a "real" color is done internally
-//        pieDataset.setColors(new int[]{Color.parseColor("#C61313"),
-//                Color.parseColor("#4860B8"),
-//                Color.parseColor("#37A62B"),
-//                Color.parseColor("#50BAC8"),
-//                Color.parseColor("#30C697"),
-//                Color.parseColor("#105E14")});
-        //pieDataset.setColors(ColorTemplate.PASTEL_COLORS);
-//        pieDataset.setColors(ColorTemplate.PASTEL_COLORS);
-        // setting text size
-        pieDataset.setValueTextSize(16f);
-        pieChart.getDescription().setEnabled(false);
-
-        for (int i = 0; i < countList.size(); i++) {
-
-            System.out.println(values2.get(i).getValue());
-            System.out.println(values2.get(i).getLabel());
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-    private void getBarEntries() {
-        // creating a new array list
-        pieEntriesArrayList = new ArrayList<>();
-
-
-        for (int i = 0; i < countList.size(); i++) {
-
-            String key = countList.get(i).getFirst();
-            String value = countList.get(i).getSecond();
-            pieEntriesArrayList.add(new PieEntry(Float.parseFloat(value), i));
-            Legend legend = pieChart.getLegend();
-
-
-
-
-
-            legend.setWordWrapEnabled(true);
-            System.out.println(legend);
-            legend.setEnabled(true);
-            System.out.println("KEY" + key);
-            System.out.println("VALUE" + value);
-        }
-
-        pieChart.getLegend().setEnabled(false);
-
-
-
         bottomNavigationItemView =  findViewById(R.id.homeButton);
         bottomNavigationItemView = findViewById(R.id.calendarButton);
         floatingActionButton = findViewById(R.id.addButton);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        // creating a new array list to display total amount of moods added with PAIR of values using
+        // .getFirst() and .getSecond() for each item in database
+        ArrayList<String> values = new ArrayList<>();
+            for (int i = 0; i < countList.size(); i++) {
+                String key = countList.get(i).getFirst();
+                String value = countList.get(i).getSecond();
+                values.add(key + " " + value);
+            }
+            //Attaching count method from database to list view
+        ArrayAdapter<String>showAdapter;
+            showAdapter
+                    = new ArrayAdapter<String>(UserStatisticsActivity.this, R.layout.custom_dropdown, values);
+            countListView.setAdapter(showAdapter);
+
+            //creating array list specifically for pie entries so they can be later attached to a label so it is visible on pie chart
+        ArrayList<PieEntry> values2 = new ArrayList<>();
+            for (int i = 0; i < countList.size(); i++) {
+                String key = countList.get(i).getFirst();
+                String value = countList.get(i).getSecond();
+                values2.add(new PieEntry(Float.parseFloat(value),key));
+            }
+
+            //Customization methods for pie chart
+            pieDataset = new PieDataSet(values2, "");
+            pieDataset.setColors(ColorTemplate.PASTEL_COLORS);
+            pieChart = findViewById(R.id.piechart);
+            pieChart.setDrawHoleEnabled(false);
+            pieData = new PieData(pieDataset);
+            pieChart.setData(pieData);
+            pieChart.setNoDataText("Please add a mood to view the chart");
+            pieChart.setBackgroundColor(Color.parseColor("#EDE1D2"));
+            pieDataset.setValueTextSize(16f);
+            pieChart.getDescription().setEnabled(false);
+
+            getPieEntries();
+        }
+
+    private void getPieEntries() {
+        // creating a new array list
+        pieEntriesArrayList = new ArrayList<>();
+        for (int i = 0; i < countList.size(); i++) {
+            String key = countList.get(i).getFirst();
+            String value = countList.get(i).getSecond();
+            //Attaching the values and keys from database to their respective legends for readability
+            pieEntriesArrayList.add(new PieEntry(Float.parseFloat(value), i));
+            Legend legend = pieChart.getLegend();
+            legend.setWordWrapEnabled(true);
+            System.out.println(legend);
+            legend.setEnabled(true);
+        }
+        pieChart.getLegend().setEnabled(false);
+        //Navigation set-up
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -266,27 +142,11 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
                         Intent intentAdd = new Intent(UserStatisticsActivity.this , AddMoodActivity.class);
                         startActivity(intentAdd);
                         return true;
-
                 }
                 return false;
             }
-
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 if ((FloatingActionButton)view == floatingActionButton){
@@ -294,26 +154,7 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
                     startActivity(intentAdd);
                 }}
         });
-
-
-//        calendarMonthView.setOnDateChangedListener(new OnDateSelectedListener() {
-//            @Override
-//            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected)
-//            {
-//                currentDay = calendarMonthView.getSelectedDate();
-//                year = currentDay.getYear();
-//                month = currentDay.getMonth();
-//                day = currentDay.getDay();
-//                currentDate = String.format("%02d/%02d/%04d", day, month, year);
-//                Intent goToMainCalendar = new Intent(UserStatisticsActivity.this, MainActivity.class);
-//                startActivity(goToMainCalendar);
-//
-//            }
-//        });
     }
-
-
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
