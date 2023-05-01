@@ -14,7 +14,7 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/calendarButton"
+        android:id="@+id/statisticsButton"
         android:title="Stats"
         android:icon="@drawable/stats"
         app:showAsAction="always" />

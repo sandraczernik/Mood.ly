@@ -27,15 +27,6 @@
         app:mcv_tileWidth="match_parent"
         />
 
-    <TextView
-        android:id="@+id/empty"
-        android:layout_width="413dp"
-        android:layout_height="293dp"
-        android:text="Your mood list is empty"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
     <ListView
         android:id="@+id/moodListRecyclerView"
         android:layout_width="413dp"

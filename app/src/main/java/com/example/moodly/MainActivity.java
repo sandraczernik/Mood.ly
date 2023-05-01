@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         //Assigning XML elements to variables
         bottomNavigationItemView = findViewById(R.id.homeButton);
-        bottomNavigationItemView = findViewById(R.id.calendarButton);
+        bottomNavigationItemView = findViewById(R.id.statisticsButton);
         floatingActionButton = findViewById(R.id.addButton);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         Intent intentHome = new Intent(MainActivity.this, MainActivity.class);
                         startActivity(intentHome);
                         return true;
-                    case R.id.calendarButton:
+                    case R.id.statisticsButton:
                         Intent intentCalendar = new Intent(MainActivity.this, UserStatisticsActivity.class);
                         startActivity(intentCalendar);
                         return true;

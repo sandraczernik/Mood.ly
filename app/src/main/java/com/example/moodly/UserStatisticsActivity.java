@@ -1,43 +1,28 @@
 package com.example.moodly;
 
-import androidx.annotation.FontRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LegendEntry;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import kotlin.Pair;
 
@@ -70,7 +55,7 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
         //XML to variable
         countListView = findViewById(R.id.countListView);
         bottomNavigationItemView =  findViewById(R.id.homeButton);
-        bottomNavigationItemView = findViewById(R.id.calendarButton);
+        bottomNavigationItemView = findViewById(R.id.statisticsButton);
         floatingActionButton = findViewById(R.id.addButton);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -134,13 +119,9 @@ public class UserStatisticsActivity extends AppCompatActivity implements BottomN
                         Intent intentHome = new Intent(UserStatisticsActivity.this , MainActivity.class);
                         startActivity(intentHome);
                         return true;
-                    case R.id.calendarButton:
+                    case R.id.statisticsButton:
                         Intent intentCalendar = new Intent(UserStatisticsActivity.this , UserStatisticsActivity.class);
                         startActivity(intentCalendar);
-                        return true;
-                    case R.id.addButton:
-                        Intent intentAdd = new Intent(UserStatisticsActivity.this , AddMoodActivity.class);
-                        startActivity(intentAdd);
                         return true;
                 }
                 return false;

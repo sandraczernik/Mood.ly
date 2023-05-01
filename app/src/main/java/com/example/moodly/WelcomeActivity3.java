@@ -18,7 +18,7 @@ public class WelcomeActivity3 extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_welcome3);
 
         //XML to variable
-        registerBtn = (Button) findViewById(R.id.registerButtonWelcome);
+        registerBtn = (Button) findViewById(R.id.getStartedButton);
     }
 
     @Override
