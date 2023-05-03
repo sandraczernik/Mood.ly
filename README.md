@@ -9,6 +9,6 @@ Moodly is a tracking application aimed towards users who want to track their moo
 
 
 
--------------- implementations used --------------
-https://github.com/prolificinteractive/material-calendarview - weekly view visible on home activity
-https://github.com/PhilJay/MPAndroidChart - overall moods added view using a pie chart
+-------------- implementations used -------------- <br>
+https://github.com/prolificinteractive/material-calendarview - weekly view visible on home activity <br>
+https://github.com/PhilJay/MPAndroidChart - overall moods visual added using a pie chart <br>
